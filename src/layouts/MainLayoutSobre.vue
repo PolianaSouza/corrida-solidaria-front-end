@@ -78,7 +78,19 @@ function navigateTo(route) {}
 
 <style scoped>
 .mr-md {
-  margin-right: 80px;
+  margin-right: 10px;
+}
+
+@media (min-width: 600px) {
+  .mr-md {
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 600px) {
+  .mr-md {
+    margin-right: 80px;
+  }
 }
 .transparent-toolbar {
   background-color: rgba(255, 255, 255, 0.5);

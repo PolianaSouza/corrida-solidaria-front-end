@@ -1,95 +1,57 @@
 <template>
   <div class="page-container">
-    <form @submit="submitForm" class="form-card">
+    <div class="form-container">
       <div class="form-column">
-        <div class="form-card-section">
-          <input
+        <div class="form-card-section colored-input">
+          <q-input
             v-model="formData.nomeCompleto"
-            placeholder="Nome Completo"
-            required
-            class="colored-input"
+            filled
+            label="Nome Completo"
           />
         </div>
-
-        <div class="form-card-section">
-          <input
+        <div class="form-card-section colored-input">
+          <q-input
             v-model="formData.dataNascimento"
-            placeholder="Data de Nascimento"
-            type="date"
-            required
-            class="colored-input"
+            filled
+            label="Data de Nascimento"
           />
         </div>
-
-        <div class="form-card-section">
-          <input
-            v-model="formData.cpf"
-            placeholder="CPF"
-            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-            required
-            class="colored-input"
-          />
+        <div class="form-card-section colored-input">
+          <q-input v-model="formData.cpf" filled label="CPF" />
         </div>
-
-        <div class="form-card-section">
-          <input
-            v-model="formData.email"
-            placeholder="Email"
-            type="email"
-            required
-            class="colored-input"
-          />
+        <div class="form-card-section colored-input">
+          <q-input v-model="formData.email" filled label="Email" />
         </div>
       </div>
-
-      <div class="form-column">
-        <div class="form-card-section">
-          <input
-            v-model="formData.endereco"
-            placeholder="Endereço"
-            required
-            class="colored-input"
+      <div class="form-column" style="margin-left: 20px">
+        <div class="form-card-section colored-input">
+          <q-select
+            v-model="formData.sexo"
+            filled
+            label="Selecione o Sexo"
+            :options="sexOptions"
           />
         </div>
-
-        <div class="form-card-section">
-          <input
-            v-model="formData.cep"
-            placeholder="CEP"
-            pattern="\d{5}-\d{3}"
-            required
-            class="colored-input"
-          />
+        <div class="form-card-section colored-input">
+          <q-input v-model="formData.endereco" filled label="Endereço" />
         </div>
-
-        <div class="form-card-section">
-          <select v-model="formData.sexo" required class="colored-input">
-            <option value="" disabled>Selecione o Sexo</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Feminino">Feminino</option>
-            <option value="Outro">Outro</option>
-          </select>
+        <div class="form-card-section colored-input">
+          <q-input v-model="formData.cep" filled label="CEP" />
         </div>
-
-        <div class="form-card-section">
-          <input
-            v-model="formData.telefone"
-            placeholder="Telefone"
-            pattern="\(\d{2}\) \d{4}-\d{4}"
-            required
-            class="colored-input"
-          />
+        <div class="form-card-section colored-input">
+          <q-input v-model="formData.telefone" filled label="Telefone" />
         </div>
       </div>
-
-      <div class="submit-button-container">
-        <button type="submit">Inscrever-se</button>
-      </div>
-    </form>
+    </div>
+    <div class="submit-button-container">
+      <q-btn label="Inscrever-se" color="amber" glossy @click="submitForm" />
+    </div>
   </div>
 </template>
 
 <script>
+import { QSelect, QInput, QBtn } from "quasar";
+
 export default {
   data() {
     return {
@@ -103,6 +65,7 @@ export default {
         sexo: "",
         telefone: "",
       },
+      sexOptions: ["Masculino", "Feminino", "Outro"],
     };
   },
   methods: {
@@ -120,6 +83,11 @@ export default {
       };
     },
   },
+  components: {
+    QSelect,
+    QInput,
+    QBtn,
+  },
 };
 </script>
 
@@ -135,60 +103,49 @@ export default {
   background-attachment: fixed;
 }
 
-.form-card {
+.form-container {
   display: flex;
-  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
   width: 80%;
   max-width: 800px;
   padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-
+.form-column {
+  width: 50%;
+}
 .form-card-section {
   margin-bottom: 10px;
 }
 
-.form-column {
-  flex-basis: 50%;
-  margin-right: 50px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
-input,
-select,
-button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  margin-top: 5px;
-  font-size: 16px;
-}
-
-button {
-  background-color: #ffc400;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #727272;
-}
-
 .submit-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
-  bottom: 110px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  width: 10%;
+  bottom: 100px;
+  left: 0;
+  right: 0;
 }
+.submit-button-container .q-btn {
+  background-color: #ffa500;
+  color: #ffffff;
+  padding: 10px 70px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.submit-button-container .q-btn:hover {
+  background-color: #ffd900;
+  color: #ffffff;
+}
+
 .colored-input {
   background-color: #ffdb5b;
-  color: #000000;
+  color: #ffffff;
 }
 @media (max-width: 600px) {
   .form-column {

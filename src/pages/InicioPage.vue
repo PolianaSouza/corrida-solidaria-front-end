@@ -33,7 +33,11 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .font-bold {
@@ -74,5 +78,14 @@
   align-items: center;
   justify-content: center;
   border-radius: 20px;
+}
+@media screen and (max-width: 768px) {
+  .font-bold {
+    font-size: 30px;
+  }
+
+  .card {
+    max-width: 100%;
+  }
 }
 </style>

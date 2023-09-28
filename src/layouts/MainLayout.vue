@@ -1,60 +1,37 @@
 <template>
   <q-layout view="hHh lpR fff">
-    <q-header class="bg-primary text-black">
-      <q-toolbar class="transparent-toolbar">
-        <q-toolbar-title align="center">
-          <div class="q-gutter-md q-layout-gutter-x">
-            <q-img
-              src="https://images2.imgbox.com/64/84/wF8M2Jgb_o.png"
-              alt="Ícone"
-              width="55px"
-              height="55px"
-              class="mr-md"
-            />
-            <q-btn
-              dense
-              flat
-              label="Início"
-              @click="navigateTo('inicio')"
-              class="mr-md"
-            />
-            <q-btn
-              dense
-              flat
-              label="Inscrever-se"
-              @click="navigateTo('inscrever')"
-              class="mr-md"
-            />
-            <q-btn
-              dense
-              flat
-              label="Ajudar"
-              @click="navigateTo('ajuda')"
-              class="mr-md"
-            />
-            <q-btn
-              dense
-              flat
-              label="Placar"
-              @click="navigateTo('placar')"
-              class="mr-md"
-            />
-            <q-btn
-              dense
-              flat
-              label="Sobre Nós"
-              @click="navigateTo('sobre')"
-              class="mr-md"
-            />
-            <q-btn
-              dense
-              flat
-              class="login-button"
-              label="Login"
-              @click="navigateTo('login')"
-            />
-          </div>
-        </q-toolbar-title>
+    <q-header class="text-black">
+      <q-toolbar class="transparent-toolbar row flex justify-around">
+        <div class="col-xs-1 col-md-2 col-lg-2">
+          <q-img
+            src="https://images2.imgbox.com/64/84/wF8M2Jgb_o.png"
+            alt="Ícone"
+            width="55px"
+            height="55px"
+            class="mr-md"
+          />
+        </div>
+        <div class="col-xs-9 col-md-6 col-lg-7">
+          <q-tabs
+            class="q-gutter-x-md text-bold"
+            inline-label
+            outside-arrows
+            mobile-arrows
+            align="justify"
+            indicator-color="yellow-10"
+            active-color="orange-10"
+          >
+            <q-route-tab to="/" label="Início" />
+            <q-route-tab to="/inscrever" label="Inscrever-se" />
+            <q-route-tab to="/" label="Ajudar" />
+            <q-route-tab to="/" label="Placar" />
+            <q-route-tab to="/sobre" label="Sobre nós" />
+          </q-tabs>
+        </div>
+
+        <div class="col-xs-1 col-md-1 flex justify-center">
+          <q-btn dense flat class="login-button" label="Login" to="/login" />
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -64,28 +41,16 @@
   </q-layout>
 </template>
 
-<script setup>
-import { ref } from "vue";
-
-const leftDrawerOpen = ref(false);
-
-function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-}
-
-function navigateTo(route) {}
-</script>
+<script setup></script>
 
 <style scoped>
-.mr-md {
-  margin-right: 80px;
-}
 .transparent-toolbar {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.45);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+  box-shadow: 0px 8px 10px 0px rgba(129, 126, 126, 0.25);
 }
 .login-button {
   background-color: #ffc400;

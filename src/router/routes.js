@@ -2,17 +2,18 @@ const routes = [
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
-    children: [{ path: "", component: () => import("pages/InicioPage.vue") }],
+    children: [
+      { path: "", component: () => import("pages/IndexPage.vue") },
+      { path: "/inscrever", component: () => import("pages/RegisterPage.vue") },
+      { path: "/sobre", component: () => import("pages/SobrePage.vue") },
+    ],
   },
   {
-    path: "/inscrever",
-    component: () => import("layouts/MainLayoutRegister.vue"),
-    children: [{ path: "", component: () => import("pages/RegisterPage.vue") }],
-  },
-  {
-    path: "/sobre",
-    component: () => import("layouts/MainLayoutSobre.vue"),
-    children: [{ path: "", component: () => import("pages/SobrePage.vue") }],
+    path: "/login",
+    component: () => import("layouts/LoginLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/admin/LoginPage.vue") },
+    ],
   },
   {
     path: "/:catchAll(.*)*",

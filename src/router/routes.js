@@ -16,6 +16,36 @@ const routes = [
     ],
   },
   {
+    path: "/admin",
+    component: () => import("layouts/AdminLayout.vue"),
+    children: [
+      {
+        path: "/admin/dashboard",
+        component: () => import("pages/admin/DashboardPage.vue"),
+      },
+      {
+        path: "/admin/usuarios",
+        component: () => import("pages/admin/users/UsersPage.vue"),
+      },
+      {
+        path: "/admin/usuarios/novo-usuario",
+        component: () => import("pages/admin/users/FormUsers.vue"),
+      },
+      {
+        path: "/admin/corridas",
+        component: () => import("pages/admin/runs/RunsPage.vue"),
+      },
+      {
+        path: "/admin/atletas",
+        component: () => import("pages/admin/athletes/AthletesPage.vue"),
+      },
+      {
+        path: "/admin/perfil",
+        component: () => import("pages/admin/users/ProfileUser.vue"),
+      },
+    ],
+  },
+  {
     path: "/:catchAll(.*)*",
     component: () => import("pages/ErrorNotFound.vue"),
   },

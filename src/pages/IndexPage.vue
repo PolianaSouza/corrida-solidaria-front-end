@@ -12,12 +12,6 @@
         Um ser humano solidário é um ser humano melhor.
       </h2>
     </div>
-    <div class="card">
-      <div class="card-content">
-        <h1 class="card-title">Doações Arrecadadas</h1>
-        <h2 class="card-subtitle font-poppins font-bold">R$1.900</h2>
-      </div>
-    </div>
   </q-page>
 </template>
 

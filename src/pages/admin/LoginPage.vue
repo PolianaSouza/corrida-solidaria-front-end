@@ -36,7 +36,12 @@
             />
           </template>
         </q-input>
-        <q-btn label="Login" class="btn-login" unelevated />
+        <q-btn
+          label="Login"
+          class="btn-login"
+          unelevated
+          to="/admin/dashboard"
+        />
       </q-form>
     </div>
     <div>

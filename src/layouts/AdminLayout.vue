@@ -1,14 +1,14 @@
 <template>
   <q-layout view="hHh lpR fff">
-    <q-header class="text-black">
-      <q-toolbar class="transparent-toolbar row flex justify-around">
+    <q-header class="text-white">
+      <q-toolbar class="row flex justify-around">
         <div class="col-xs-1 col-md-2 col-lg-2">
           <q-img
             src="https://images2.imgbox.com/64/84/wF8M2Jgb_o.png"
             alt="Ícone"
-            width="55px"
-            height="55px"
-            class="mr-md"
+            width="4rem"
+            height="3.5rem"
+            class="q-ml-md borderImage"
           />
         </div>
         <div class="col-xs-9 col-md-6 col-lg-7 flex justify-end">
@@ -18,23 +18,18 @@
             outside-arrows
             mobile-arrows
             align="center"
-            indicator-color="yellow-10"
-            active-color="orange-10"
+            indicator-color="amber-12"
+            active-color="amber-12"
           >
-            <q-route-tab to="/" label="Início" />
-            <q-route-tab to="/" label="Placar" />
-            <q-route-tab to="/sobre" label="Sobre nós" />
+            <q-route-tab to="/admin/dashboard" label="Dashboard" />
+            <q-route-tab to="/admin/usuarios" label="Usuários" />
+            <q-route-tab to="/admin/corridas" label="Corridas" />
+            <q-route-tab to="/admin/atletas" label="Atletas" />
           </q-tabs>
         </div>
 
         <div class="col-xs-2 col-md-1 flex justify-center">
-          <q-btn
-            dense
-            flat
-            class="login-button"
-            label="Administradores"
-            to="/login"
-          />
+          <q-btn dense flat class="login-button" label="Usuário" to="/login" />
         </div>
       </q-toolbar>
     </q-header>
@@ -63,7 +58,7 @@
   border: none;
   cursor: pointer;
   transition: box-shadow 0.3s;
-  width: 100%;
+  width: 80%;
 }
 
 .login-button:hover {

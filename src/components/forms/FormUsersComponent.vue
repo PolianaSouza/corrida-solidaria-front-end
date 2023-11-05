@@ -100,7 +100,7 @@
           color="red"
           flat
           class="q-ml-sm"
-          to="/usuarios"
+          to="/admin/usuarios"
         />
       </div>
     </q-form>

@@ -11,26 +11,30 @@
             class="mr-md"
           />
         </div>
-        <div class="col-xs-9 col-md-6 col-lg-7">
+        <div class="col-xs-9 col-md-6 col-lg-7 flex justify-end">
           <q-tabs
-            class="q-gutter-x-md text-bold"
+            class="q-gutter-x-xl text-bold"
             inline-label
             outside-arrows
             mobile-arrows
-            align="justify"
+            align="center"
             indicator-color="yellow-10"
             active-color="orange-10"
           >
             <q-route-tab to="/" label="Início" />
-            <q-route-tab to="/inscrever" label="Inscrever-se" />
-            <q-route-tab to="/" label="Ajudar" />
             <q-route-tab to="/" label="Placar" />
             <q-route-tab to="/sobre" label="Sobre nós" />
           </q-tabs>
         </div>
 
-        <div class="col-xs-1 col-md-1 flex justify-center">
-          <q-btn dense flat class="login-button" label="Login" to="/login" />
+        <div class="col-xs-2 col-md-1 flex justify-center">
+          <q-btn
+            dense
+            flat
+            class="login-button"
+            label="Administradores"
+            to="/login"
+          />
         </div>
       </q-toolbar>
     </q-header>
@@ -59,7 +63,7 @@
   border: none;
   cursor: pointer;
   transition: box-shadow 0.3s;
-  width: 100px;
+  width: 100%;
 }
 
 .login-button:hover {

@@ -2,19 +2,13 @@ const routes = [
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
-<<<<<<< HEAD
-    children: [{ path: "", component: () => import("pages/IndexPage.vue") }],
-=======
     children: [
       { path: "", component: () => import("pages/IndexPage.vue") },
       { path: "/inscrever", component: () => import("pages/RegisterPage.vue") },
       { path: "/sobre", component: () => import("pages/SobrePage.vue") },
     ],
->>>>>>> 14b3777ed38e4717ecf6e7a2ba04580a3f9b6729
   },
   {
-<<<<<<< HEAD
-=======
     path: "/login",
     component: () => import("layouts/LoginLayout.vue"),
     children: [
@@ -56,7 +50,6 @@ const routes = [
     ],
   },
   {
->>>>>>> 14b3777ed38e4717ecf6e7a2ba04580a3f9b6729
     path: "/:catchAll(.*)*",
     component: () => import("pages/ErrorNotFound.vue"),
   },

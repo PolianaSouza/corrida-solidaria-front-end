@@ -9,7 +9,7 @@
       />
     </div>
     <q-table
-      title="Treats"
+      :title="title"
       :rows="rows"
       :columns="columns"
       row-key="name"
@@ -18,7 +18,7 @@
     >
       <template v-slot:body-cell-acoes="props">
         <q-td :props="props">
-          <div class="q-gutter-x-sm">
+          <div class="q-gutter-x-sm">            
             <q-btn
               icon="edit"
               dense
@@ -27,13 +27,23 @@
               color="orange-9"
               @click="updateItem(props.row.id)"
             />
+
             <q-btn
               icon="delete"
               dense
               flat
-              title="excluir"
+              title="Excluir"
               color="red-8"
               @click="deleteItem(props.row.id)"
+            />
+
+            <q-btn
+              icon="sell"
+              dense
+              flat
+              title="Visualizar Etiqueta"
+              color="green-10"
+              to="/admin/atletas/tag-atleta"
             />
           </div>
         </q-td>
@@ -44,6 +54,10 @@
 
 <script setup>
 const props = defineProps({
+  title: {
+    type: String,
+    required: false,
+  },
   columns: {
     type: Array,
     required: true,
@@ -63,6 +77,10 @@ const props = defineProps({
     default: "/",
   },
 });
+
+function viewTag(atleta_id) {
+
+}
 </script>
 
 <style lang="scss" scoped></style>

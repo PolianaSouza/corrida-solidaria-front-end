@@ -44,6 +44,14 @@ const routes = [
         component: () => import("pages/admin/athletes/AthletesPage.vue"),
       },
       {
+        path: "/admin/atletas/novo-atleta",
+        component: () => import("pages/admin/athletes/FormAthletes.vue"),
+      },
+      {
+        path: "/admin/atletas/tag-atleta",
+        component: () => import("pages/admin/athletes/EtiquetasPage.vue"),
+      },
+      {
         path: "/admin/perfil",
         component: () => import("pages/admin/users/ProfileUser.vue"),
       },

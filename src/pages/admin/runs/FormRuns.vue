@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <div>
-      <FormRunComponent @submitDataRun="createRun" />
+      <FormRunComponent @submitDataRun="onSubmitRunData" :idRun="id" />
     </div>
   </q-page>
 </template>
@@ -11,6 +11,7 @@ import FormRunComponent from "../../../components/forms/FormRunComponent.vue";
 import { api } from "src/boot/axios";
 import { QSpinnerBall, useQuasar } from "quasar";
 import { useRouter, useRoute } from "vue-router";
+import { format, parse, formatISO } from "date-fns";
 
 const $q = useQuasar();
 const router = useRouter();
@@ -67,8 +68,35 @@ async function createRun(data) {
   }
 }
 
+function formatDate(date) {
+  let data = parse(date, "dd-MM-yyyy HH:mm", new Date());
+  let isoFormatDate = format(data, "yyyy-MM-ddTHH:mm:SSZ");
+  // isoFormatDate += "Z";
+  console.log("a data", date);
+  console.log("a data", isoFormatDate);
+  return isoFormatDate;
+}
+
 async function updateRun(data) {
-  data.data_horario = new Date(data.data_horario);
+  console.log("atualizando", data);
+  console.log("horario", data.data_horario);
+  // console.log("horario ISO", new Date(data.data_horario).toISOString());
+  // console.log("horario ISO", format(
+  //     new Date(data.data_horario),
+  //     "dd-MM-yyyy HH:mm"
+  //   ));
+  formatDate(data.data_horario);
+  // console.log("horario ISO", formatDate(data.data_horario));
+  // console.log(
+  //   "horario ISO",
+  //   format(
+  //     parse(data.data_horario, "dd-MM-yyyy", new Date()),
+  //     "yyyy-MM-dd'T'HH:mm:ssxxx"
+  //   )
+  // );
+
+  data.data_horario = new Date(data.data_horario).toISOString();
+  console.log("horario", data.data_horario);
   data.distancia = Number(data.distancia);
   const dados = { ...data };
   $q.loading.show({
@@ -80,7 +108,7 @@ async function updateRun(data) {
     spinnerSize: 140,
   });
   try {
-    const resposta = await api.put(`/corrida/${id}`, dados);
+    const resposta = await api.patch(`/corrida/${id}`, dados);
 
     if (resposta.status == 200) {
       $q.notify({
@@ -88,7 +116,7 @@ async function updateRun(data) {
         icon: "check",
         position: "top",
         timeout: 1000,
-        message: "Corrida atualizado com sucesso",
+        message: "Corrida atualizada com sucesso",
       });
     } else {
       $q.notify({

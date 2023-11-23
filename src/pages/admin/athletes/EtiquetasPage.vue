@@ -8,7 +8,9 @@
     />
   </div>
 
-  <div class="q-pa-md row justify-center items-start q-gutter-md width-45.5rem height-15.25rem">
+  <div
+    class="q-pa-md row justify-center items-start q-gutter-md width-45.5rem height-15.25rem"
+  >
     <q-col cols="6" class="my-card">
       <label class="text-h6">DADOS DOS ATLETAS</label>
       <q-card class="bg-grey-2">
@@ -20,11 +22,7 @@
             <div class="q-mb-md text-p">Etiqueta n°{{ etiqueta_numero }}</div>
           </div>
 
-          <img
-            :src="`public/favicon.ico`"
-            alt="Atleta Foto"
-            class="atleta_imagem"
-          />
+          <img :src="`/favicon.ico`" alt="Atleta Foto" class="atleta_imagem" />
         </q-card-section>
       </q-card>
     </q-col>

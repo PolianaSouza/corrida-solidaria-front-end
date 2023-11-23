@@ -30,7 +30,7 @@ const columns = ref([
     label: "Nome",
     field: "nome",
     align: "left",
-    sortable: true
+    sortable: true,
   },
   {
     name: "idade",
@@ -38,7 +38,7 @@ const columns = ref([
     label: "Idade",
     field: "idade",
     align: "center",
-    sortable: true
+    sortable: true,
   },
   {
     name: "sexo",
@@ -46,7 +46,7 @@ const columns = ref([
     label: "Sexo",
     field: "sexo",
     align: "center",
-    sortable: true
+    sortable: true,
   },
   {
     name: "telefone",
@@ -54,7 +54,7 @@ const columns = ref([
     label: "Telefone",
     field: "telefone",
     align: "center",
-    sortable: true
+    sortable: true,
   },
   {
     name: "acoes",
@@ -62,8 +62,8 @@ const columns = ref([
     label: "Ações",
     field: "acoes",
     align: "center",
-    sortable: true
-  }
+    sortable: true,
+  },
 ]);
 
 // const rows = ref([]);
@@ -83,20 +83,20 @@ const rows = ref([
     nome: "Louise Ana Valentina Mendes",
     idade: "55",
     sexo: "F",
-    telefone: "7777777777"
+    telefone: "7777777777",
   },
   {
     nome: "Pedro Mendes",
     idade: "21",
     sexo: "M",
-    telefone: "7377123456"
+    telefone: "7377123456",
   },
   {
     nome: "Joao Silva",
     idade: "34",
     sexo: "M",
-    telefone: "71991345678"
-  }
+    telefone: "71991345678",
+  },
 ]);
 </script>
 

@@ -36,7 +36,8 @@
           filled
           v-model="formAthlete.data_nascimento"
           label="Data de nascimento do atleta"
-          :rules="validateDate">
+          :rules="validateDate"
+        >
           <template v-slot:prepend>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy
@@ -54,7 +55,7 @@
           </template>
         </q-input>
       </div>
-      
+
       <div class="col-xs-11 col-sm-6 col-md-6 col-lg-3">
         <q-select
           filled
@@ -70,7 +71,7 @@
           behavior="menu"
         />
       </div>
-      
+
       <div class="col-xs-11 col-sm-6 col-md-6 col-lg-3">
         <q-input
           filled
@@ -78,9 +79,10 @@
           label="Telefone"
           v-model="formAthlete.telefone"
           lazy-rules
-          :rules="validateTelefone"/>
+          :rules="validateTelefone"
+        />
       </div>
-      
+
       <div class="col-12" style="margin-top: 80px">
         <q-btn :label="labelButton" type="submit" color="primary" unelevated />
         <q-btn

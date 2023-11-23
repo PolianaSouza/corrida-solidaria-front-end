@@ -7,6 +7,8 @@
           :columns="columns"
           :rows="rows"
           routeBtnNew="/admin/corridas/nova-corrida"
+          routeUpdate="/admin/corridas/editar-corrida"
+          :remove="removeRun"
         />
       </q-card>
     </div>
@@ -18,7 +20,9 @@ import TableManager from "src/components/common/TableManager.vue";
 import { api } from "src/boot/axios";
 import { ref, onMounted } from "vue";
 import { date } from "quasar";
+import { useQuasar } from "quasar";
 
+const $q = useQuasar();
 onMounted(() => {
   getRuns();
 });
@@ -80,85 +84,60 @@ async function getRuns() {
   try {
     const resposta = await api.get("/corrida");
     rows.value = resposta.data;
-    console.log(resposta.data);
   } catch (error) {
+    $q.notify({
+      color: "negative",
+      icon: "report_problem",
+      position: "top",
+      timeout: 1000,
+      message: "Erro ao carregar dados",
+    });
     console.log(error);
   }
 }
 
-//rows mock
-// const rows = ref([
-//   {
-//     nome: "Corrida da Montanha",
-//     local: "Vitória da Conquista",
-//     data_horario: "15/12/2023 às 08:00 hrs",
-//     distancia: "10 km",
-//     status: "ativo",
-//   },
-//   {
-//     nome: "Corrida Beira-Mar",
-//     local: "Salvador",
-//     data_horario: "20/12/2023 às 07:30 hrs",
-//     distancia: "5 km",
-//     status: "ativo",
-//   },
-//   {
-//     nome: "Meia Maratona de Feira",
-//     local: "Feira de Santana",
-//     data_horario: "25/12/2023 às 09:15 hrs",
-//     distancia: "21 km",
-//     status: "ativo",
-//   },
-//   {
-//     nome: "Corrida Noturna de Itabuna",
-//     local: "Itabuna",
-//     data_horario: "30/12/2023 às 20:00 hrs",
-//     distancia: "8 km",
-//     status: "inativo",
-//   },
-//   {
-//     nome: "Corrida das Praias",
-//     local: "Salvador",
-//     data_horario: "10/01/2024 às 06:45 hrs",
-//     distancia: "15 km",
-//     status: "ativo",
-//   },
-//   {
-//     nome: "Maratona da Serra",
-//     local: "Vitória da Conquista",
-//     data_horario: "15/01/2024 às 07:30 hrs",
-//     distancia: "42 km",
-//     status: "ativo",
-//   },
-//   {
-//     nome: "Corrida do Cacau",
-//     local: "Itabuna",
-//     data_horario: "20/01/2024 às 08:00 hrs",
-//     distancia: "10 km",
-//     status: "inativo",
-//   },
-//   {
-//     nome: "Corrida dos Parques",
-//     local: "Salvador",
-//     data_horario: "25/01/2024 às 09:00 hrs",
-//     distancia: "12 km",
-//     status: "ativo",
-//   },
-//   {
-//     nome: "Corrida da Cidade",
-//     local: "Feira de Santana",
-//     data_horario: "30/01/2024 às 07:00 hrs",
-//     distancia: "7 km",
-//     status: "inativo",
-//   },
-//   {
-//     nome: "Corrida Noturna de Verão",
-//     local: "Vitória da Conquista",
-//     data_horario: "05/02/2024 às 20:30 hrs",
-//     distancia: "5 km",
-//     status: "ativo",
-//   },
-// ]);
+async function removeRun(id) {
+  console.log("corrida id", id);
+  $q.dialog({
+    title: "Excluir Corrida",
+    message: "Tem certeza que deseja excluir essa corrida?",
+    cancel: true,
+    persistent: true,
+    ok: {
+      push: true,
+      color: "red-14",
+      label: "Excluir",
+    },
+    cancel: {
+      push: true,
+      color: "grey-5",
+      label: "Cancelar",
+    },
+  }).onOk(async () => {
+    try {
+      const { status } = await api.delete(`corrida/${id}`);
+      if (status == 200) {
+        $q.notify({
+          color: "positive",
+          icon: "check",
+          position: "top",
+          timeout: 1000,
+          message: "Corrida excluída com sucesso",
+        });
+      }
+    } catch (error) {
+      $q.notify({
+        color: "negative",
+        icon: "report_problem",
+        position: "top",
+        timeout: 1000,
+        message: "Erro ao excluir corrida",
+      });
+    }
+    rows.value = [];
+    getRuns();
+  });
+}
 </script>
 
 <style scoped>

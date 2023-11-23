@@ -18,14 +18,14 @@
     >
       <template v-slot:body-cell-acoes="props">
         <q-td :props="props">
-          <div class="q-gutter-x-sm">            
+          <div class="q-gutter-x-sm">
             <q-btn
               icon="edit"
               dense
               flat
               title="Editar"
               color="orange-9"
-              @click="updateItem(props.row.id)"
+              @click="updated(props.row.id)"
             />
 
             <q-btn
@@ -34,7 +34,7 @@
               flat
               title="Excluir"
               color="red-8"
-              @click="deleteItem(props.row.id)"
+              @click="remove(props.row.id)"
             />
 
             <q-btn
@@ -53,6 +53,10 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
 const props = defineProps({
   title: {
     type: String,
@@ -76,11 +80,22 @@ const props = defineProps({
     required: true,
     default: "/",
   },
+  routeUpdate: {
+    type: String,
+    required: false,
+    default: "/",
+  },
+  remove: {
+    type: Function,
+    required: false,
+  },
 });
 
-function viewTag(atleta_id) {
-
+function updated(id) {
+  router.push(`${props.routeUpdate}/${id}`);
 }
+
+function viewTag(atleta_id) {}
 </script>
 
 <style lang="scss" scoped></style>

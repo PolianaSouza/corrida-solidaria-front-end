@@ -13,13 +13,66 @@
       </h2>
     </div>
   </q-page>
+  <q-page>
+    <div class="text-center">
+      <h2 class="font-poppins font-bold" style="margin-bottom: 1px">
+        <span class="">Próxima Corrida</span>
+      </h2>
+    </div>
+    <div class="page-container">
+      <div class="left-column">
+        <div class="rectangle">
+          <h1 class="title"></h1>
+          <p class="text"></p>
+        </div>
+      </div>
+      <div class="right-column">
+        <div class="rectangle">
+          <p class="title font-poppins">Guia da Corrida</p>
+          <div v-for="(label, index) in labels" :key="index" class="data-row">
+            <div v-if="index === 0" class="square green"></div>
+            <div v-if="index === 1" class="square red"></div>
+            <img v-else-if="index === 2" class="icon" src="https://example.com/location-icon.png" alt="Location Icon" />
+            <img v-else-if="index === 3" class="icon" src="https://example.com/calendar-icon.png" alt="Calendar Icon" />
+            <p class="label">{{ label }}</p>
+            <p class="value">{{ data[index] }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </q-page>
 </template>
 
 <script setup></script>
 
+<script>
+export default {
+  data() {
+    return {
+      labels: [
+        "Início da corrida:",
+        "Fim da corrida:",
+        "Distância:",
+        "Dia e horário:",
+      ],
+      data: ["Avenida Ilhéus", "Rua São João", "10 km", "2023-11-25 09:30"],
+    };
+  },
+};
+</script>
+
 <style scoped>
 .font-poppins {
   font-family: "Poppins", sans-serif;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .background-image {
@@ -28,6 +81,11 @@
   background-position: center;
   background-repeat: no-repeat;
   height: 100%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .font-bold {
@@ -68,5 +126,65 @@
   align-items: center;
   justify-content: center;
   border-radius: 20px;
+}
+
+.left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2ch;
+  background-color: #fefbf4;
+  margin: 30px;
+}
+
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fefbf4;
+  margin: 30px;
+  border-radius: 2ch;
+}
+
+.rectangle {
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 30px;
+}
+
+.data-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.square {
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.value {
+  margin-left: 10px;
 }
 </style>

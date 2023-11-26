@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import TableManager from "src/components/common/TableManager.vue";
+import TableManager from "src/components/common/TableRun.vue";
 import { api } from "src/boot/axios";
 import { ref, onMounted } from "vue";
 import { date } from "quasar";
@@ -84,5 +84,4 @@ async function getRuns() {
   width: 100%;
   max-width: 1400px;
 }
-
 </style>

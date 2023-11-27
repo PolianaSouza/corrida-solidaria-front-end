@@ -13,34 +13,6 @@
       </h2>
     </div>
   </q-page>
-  <q-page>
-    <div class="text-center">
-      <h2 class="font-poppins font-bold" style="margin-bottom: 1px">
-        <span class="">Próxima Corrida</span>
-      </h2>
-    </div>
-    <div class="page-container">
-      <div class="left-column">
-        <div class="rectangle">
-          <h1 class="title"></h1>
-          <p class="text"></p>
-        </div>
-      </div>
-      <div class="right-column">
-        <div class="rectangle">
-          <p class="title font-poppins">Guia da Corrida</p>
-          <div v-for="(label, index) in labels" :key="index" class="data-row">
-            <div v-if="index === 0" class="square green"></div>
-            <div v-if="index === 1" class="square red"></div>
-            <img v-else-if="index === 2" class="icon" src="https://example.com/location-icon.png" alt="Location Icon" />
-            <img v-else-if="index === 3" class="icon" src="https://example.com/calendar-icon.png" alt="Calendar Icon" />
-            <p class="label">{{ label }}</p>
-            <p class="value">{{ data[index] }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </q-page>
 </template>
 
 <script setup></script>

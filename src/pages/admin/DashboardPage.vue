@@ -2,19 +2,22 @@
   <q-page padding>
     <div class="flex justify-center">
       <q-card class="my-card q-pb-xl">
-        <TableManager
-          title="Em Andamento"
-          :columns="columns"
-          :rows="rows"
-        />
-        <TableManager title="Finalizadas" :columns="columns" :rows="rows" />
+        <q-card-section class="q-mb-md">
+          <q-card-title class="q-mb-md text-h6 font-poppins font-bold">Corridas</q-card-title>
+        </q-card-section>
+        <q-card-section class="q-pt-xs q-pb-xs">
+          <TableRun title="Em Andamento" :columns="columns" :rows="rows" />
+        </q-card-section>
+        <q-card-section class="q-pt-xs q-pb-xs">
+          <TableRun title="Finalizadas" :columns="columns" :rows="rows" />
+        </q-card-section>
       </q-card>
     </div>
   </q-page>
 </template>
 
 <script setup>
-import TableManager from "src/components/common/TableRun.vue";
+import TableRun from "src/components/common/TableRun.vue";
 import { api } from "src/boot/axios";
 import { ref, onMounted } from "vue";
 import { date } from "quasar";
@@ -80,8 +83,34 @@ async function getRuns() {
 </script>
 
 <style lang="scss" scoped>
+.font-poppins {
+  font-family: "Poppins", sans-serif;
+}
+
 .my-card {
   width: 100%;
   max-width: 1400px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-h6 {
+  font-size: 3em;
+  margin-left: 0.3em;
+}
+
+.q-my-xs {
+  margin-top: 0em; /* Ajuste a margem superior conforme necessário */
+  margin-bottom: 0em; /* Ajuste a margem inferior conforme necessário */
+}
+
+.q-pt-xs {
+  padding-top: 0em; /* Ajuste o padding superior conforme necessário */
+}
+
+.q-pb-xs {
+  padding-bottom: 0em; /* Ajuste o padding inferior conforme necessário */
 }
 </style>

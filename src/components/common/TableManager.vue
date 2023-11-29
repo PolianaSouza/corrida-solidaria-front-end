@@ -18,7 +18,7 @@
     >
       <template v-slot:body-cell-acoes="props">
         <q-td :props="props">
-          <div class="q-gutter-x-sm">            
+          <div class="q-gutter-x-sm">
             <q-btn
               icon="edit"
               dense
@@ -78,9 +78,7 @@ const props = defineProps({
   },
 });
 
-function viewTag(atleta_id) {
-
-}
+function viewTag(atleta_id) {}
 </script>
 
 <style lang="scss" scoped></style>

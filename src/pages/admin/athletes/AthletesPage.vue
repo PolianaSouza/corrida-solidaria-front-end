@@ -71,7 +71,7 @@ const columns = ref([
 
 async function getAthletes() {
   try {
-    const resposta = await api.get("/atletas");
+    const resposta = await api.get("/atleta");
     rows.value = resposta.data;
     console.log(resposta.data);
   } catch (error) {

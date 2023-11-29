@@ -37,6 +37,7 @@
               @click="remove(props.row.id)"
             />
             <q-btn
+              v-if="isAthlete"
               icon="sell"
               dense
               flat
@@ -88,8 +89,12 @@ const props = defineProps({
     type: Function,
     required: false,
   },
+  isAthlete: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
-
 
 function updated(id) {
   router.push(`${props.routeUpdate}/${id}`);

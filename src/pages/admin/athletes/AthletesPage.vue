@@ -8,6 +8,7 @@
           :columns="columns"
           :rows="rows"
           routeBtnNew="/admin/atletas/novo-atleta"
+          :isAthlete="isAthlete"
         />
       </q-card>
     </div>
@@ -22,7 +23,7 @@ import { ref, onMounted } from "vue";
 onMounted(() => {
   getAthletes();
 });
-
+const isAthlete = ref(true);
 const columns = ref([
   {
     name: "nome",

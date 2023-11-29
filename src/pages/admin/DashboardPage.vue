@@ -6,10 +6,10 @@
           <q-card-title class="q-mb-md text-h6 font-poppins font-bold">Corridas</q-card-title>
         </q-card-section>
         <q-card-section class="q-pt-xs q-pb-xs">
-          <TableRun title="Em Andamento" :columns="columns" :rows="rows" />
+          <TableRun title="Em Andamento" :columns="columns" :rows="rows1" />
         </q-card-section>
         <q-card-section class="q-pt-xs q-pb-xs">
-          <TableRun title="Finalizadas" :columns="columns" :rows="rows" />
+          <TableRun title="Finalizadas" :columns="columns" :rows="rows2" />
         </q-card-section>
       </q-card>
     </div>
@@ -28,26 +28,26 @@ onMounted(() => {
 
 const columns = ref([
   {
-    name: "data_horario",
+    name: "nome",
     required: true,
-    label: "Data e horário",
-    field: (row) => date.formatDate(row.data_horario, "DD/MM/YYYY - HH:mm"),
-    align: "center",
+    label: "Nome",
+    field: "nome",
+    align: "left",
     sortable: true,
   },
   {
     name: "local",
-    requird: true,
+    required: true,
     label: "Local",
     field: "local",
     align: "local",
     sortable: true,
   },
   {
-    name: "nome_corrida",
+    name: "data_horario",
     required: true,
-    label: "Nome da Corrida",
-    field: "nome_corrida",
+    label: "Data e horário",
+    field: (row) => date.formatDate(row.data_horario, "DD/MM/YYYY - HH:mm"),
     align: "center",
     sortable: true,
   },
@@ -60,25 +60,41 @@ const columns = ref([
     sortable: true,
   },
   {
-    name: "quantidade_inscricoes",
+    name: "status",
     required: true,
-    label: "Qtd. de Inscrições",
-    field: "quantidade_inscricoes",
+    label: "Status",
+    field: "status",
     align: "center",
     sortable: true,
   },
 ]);
 
-const rows = ref([]);
+const rows1 = ref([]);
+const rows2 = ref([]);
+
 
 async function getRuns() {
   try {
-    const resposta = await api.get("/corrida");
-    rows.value = resposta.data;
-    console.log(resposta.data);
+  const resposta = await api.get("/corrida");
+
+    // Filtra as corridas com base na data
+    const currentDate = new Date();
+    resposta.data.forEach((corrida) => {
+      const corridaData = new Date(corrida.data_horario);
+
+      // Verifica se a data da corrida é anterior à data atual
+      if (corridaData < currentDate) {
+        rows2.value.push(corrida);
+      } else {
+        rows1.value.push(corrida);
+      }
+    });
+
+  console.log(resposta.data);
   } catch (error) {
-    console.log(error);
+  console.error(error);
   }
+
 }
 </script>
 

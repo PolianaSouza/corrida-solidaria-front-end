@@ -36,7 +36,6 @@
               color="red-8"
               @click="remove(props.row.id)"
             />
-
             <q-btn
               icon="sell"
               dense
@@ -91,11 +90,10 @@ const props = defineProps({
   },
 });
 
+
 function updated(id) {
   router.push(`${props.routeUpdate}/${id}`);
 }
-
-function viewTag(atleta_id) {}
 </script>
 
 <style lang="scss" scoped></style>

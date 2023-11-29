@@ -2,8 +2,8 @@
   <q-page padding>
     <div class="flex justify-center">
       <q-card class="my-card q-pb-xl">
-        <q-card-section class="q-mb-md">
-          <q-card-title class="q-mb-md text-h6 font-poppins font-bold">Corridas</q-card-title>
+        <q-card-section class="q-mb-md text-h6 font-poppins text-bold">
+          Corridas
         </q-card-section>
         <q-card-section class="q-pt-xs q-pb-xs">
           <TableRun title="Em Andamento" :columns="columns" :rows="rows1" />
@@ -72,10 +72,9 @@ const columns = ref([
 const rows1 = ref([]);
 const rows2 = ref([]);
 
-
 async function getRuns() {
   try {
-  const resposta = await api.get("/corrida");
+    const resposta = await api.get("/corrida");
 
     // Filtra as corridas com base na data
     const currentDate = new Date();
@@ -90,11 +89,10 @@ async function getRuns() {
       }
     });
 
-  console.log(resposta.data);
+    console.log(resposta.data);
   } catch (error) {
-  console.error(error);
+    console.error(error);
   }
-
 }
 </script>
 

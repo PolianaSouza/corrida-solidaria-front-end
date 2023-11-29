@@ -48,7 +48,7 @@ export default {
 }
 
 .background-image {
-  background-image: url("https://images2.imgbox.com/ac/a8/gmRhUCch_o.jpg");
+  background-image: url("../assets/corrida.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -119,7 +119,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { api } from "src/boot/axios";
-import { format } from "date-fns";
+// import { format } from "date-fns";
 
 onMounted(() => {
   getRun();
@@ -161,10 +161,10 @@ async function getRun() {
     const { data } = await api.get(`/corrida/${props.idRun}`);
     console.log(data);
     formRun.value = data;
-    formRun.value.data_horario = format(
-      new Date(data.data_horario),
-      "dd-MM-yyyy HH:mm"
-    );
+    // formRun.value.data_horario = format(
+    //   new Date(data.data_horario),
+    //   "dd-MM-yyyy HH:mm"
+    // );
   } catch (error) {
     console.log(error);
   }

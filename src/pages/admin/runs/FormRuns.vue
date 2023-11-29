@@ -11,7 +11,6 @@ import FormRunComponent from "../../../components/forms/FormRunComponent.vue";
 import { api } from "src/boot/axios";
 import { QSpinnerBall, useQuasar } from "quasar";
 import { useRouter, useRoute } from "vue-router";
-import { format, parse, formatISO } from "date-fns";
 
 const $q = useQuasar();
 const router = useRouter();
@@ -68,32 +67,32 @@ async function createRun(data) {
   }
 }
 
-function formatDate(date) {
-  let data = parse(date, "dd-MM-yyyy HH:mm", new Date());
-  let isoFormatDate = format(data, "yyyy-MM-ddTHH:mm:SSZ");
-  // isoFormatDate += "Z";
-  console.log("a data", date);
-  console.log("a data", isoFormatDate);
-  return isoFormatDate;
-}
+// function formatDate(date) {
+//   let data = parse(date, "dd-MM-yyyy HH:mm", new Date());
+//   let isoFormatDate = format(data, "yyyy-MM-ddTHH:mm:SSZ");
+//   // isoFormatDate += "Z";
+//   console.log("a data", date);
+//   console.log("a data", isoFormatDate);
+//   return isoFormatDate;
+// }
 
 async function updateRun(data) {
-  console.log("atualizando", data);
-  console.log("horario", data.data_horario);
-  // console.log("horario ISO", new Date(data.data_horario).toISOString());
-  // console.log("horario ISO", format(
-  //     new Date(data.data_horario),
-  //     "dd-MM-yyyy HH:mm"
-  //   ));
-  formatDate(data.data_horario);
-  // console.log("horario ISO", formatDate(data.data_horario));
-  // console.log(
-  //   "horario ISO",
-  //   format(
-  //     parse(data.data_horario, "dd-MM-yyyy", new Date()),
-  //     "yyyy-MM-dd'T'HH:mm:ssxxx"
-  //   )
-  // );
+  // console.log("atualizando", data);
+  // console.log("horario", data.data_horario);
+  // // console.log("horario ISO", new Date(data.data_horario).toISOString());
+  // // console.log("horario ISO", format(
+  // //     new Date(data.data_horario),
+  // //     "dd-MM-yyyy HH:mm"
+  // //   ));
+  // formatDate(data.data_horario);
+  // // console.log("horario ISO", formatDate(data.data_horario));
+  // // console.log(
+  // //   "horario ISO",
+  // //   format(
+  // //     parse(data.data_horario, "dd-MM-yyyy", new Date()),
+  // //     "yyyy-MM-dd'T'HH:mm:ssxxx"
+  // //   )
+  // // );
 
   data.data_horario = new Date(data.data_horario).toISOString();
   console.log("horario", data.data_horario);

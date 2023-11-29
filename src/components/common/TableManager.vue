@@ -36,7 +36,6 @@
               color="red-8"
               @click="deleteItem(props.row.id)"
             />
-
             <q-btn
               icon="sell"
               dense
@@ -75,6 +74,10 @@ const props = defineProps({
     type: String,
     required: true,
     default: "/",
+  },
+  deleteItem: {
+    type: Function,
+    required: false,
   },
 });
 

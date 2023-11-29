@@ -38,7 +38,8 @@
           lazy-rules
           :rules="[
             (val) =>
-              (val && val.length > 0) || 'Digite a distância a ser percorrida',
+              (val && val.length !== 0) ||
+              'Digite a distância a ser percorrida',
           ]"
         />
       </div>

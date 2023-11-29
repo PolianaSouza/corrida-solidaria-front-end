@@ -109,7 +109,7 @@
           color="red"
           flat
           class="q-ml-sm"
-          to="/admin/usuarios"
+          to="/admin/corridas"
         />
       </div>
     </q-form>
@@ -119,17 +119,20 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { api } from "src/boot/axios";
+// import { format } from "date-fns";
 
-onMounted(() => {});
+onMounted(() => {
+  getRun();
+});
 
 const props = defineProps({
-  idUser: {
+  idRun: {
     type: String,
     default: "",
   },
 });
 
-const labelButton = (props.idUser ? "Atualizar" : "Cadastrar") + " corrida";
+const labelButton = (props.idRun ? "Atualizar" : "Cadastrar") + " corrida";
 const formRun = ref({
   nome: "",
   local: "",
@@ -141,13 +144,6 @@ const formRun = ref({
 const validateDate = [
   (val) =>
     (val && val.length !== null) || "Informe a data e horário da corrida",
-  (val) => {
-    const runDate = new Date(val);
-    if (runDate < new Date()) {
-      return "A data e horário da corrida não pode ser anterior a data atual";
-    }
-    return true;
-  },
 ];
 
 const optionsStatus = ref([
@@ -158,6 +154,20 @@ const optionsStatus = ref([
 const emit = defineEmits(["submitDataRun"]);
 function submitForm() {
   emit("submitDataRun", formRun.value);
+}
+
+async function getRun() {
+  try {
+    const { data } = await api.get(`/corrida/${props.idRun}`);
+    console.log(data);
+    formRun.value = data;
+    // formRun.value.data_horario = format(
+    //   new Date(data.data_horario),
+    //   "dd-MM-yyyy HH:mm"
+    // );
+  } catch (error) {
+    console.log(error);
+  }
 }
 </script>
 

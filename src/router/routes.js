@@ -40,6 +40,10 @@ const routes = [
         component: () => import("pages/admin/runs/FormRuns.vue"),
       },
       {
+        path: "/admin/corridas/editar-corrida/:id",
+        component: () => import("pages/admin/runs/FormRuns.vue"),
+      },
+      {
         path: "/admin/atletas",
         component: () => import("pages/admin/athletes/AthletesPage.vue"),
       },

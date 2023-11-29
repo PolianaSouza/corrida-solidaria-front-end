@@ -7,7 +7,8 @@
           :columns="columns"
           :rows="rows"
           routeBtnNew="/admin/corridas/nova-corrida"
-          :deleteItem="deleteRun"
+          routeUpdate="/admin/corridas/editar-corrida"
+          :remove="removeRun"
         />
       </q-card>
     </div>
@@ -83,15 +84,22 @@ async function getRuns() {
   try {
     const resposta = await api.get("/corrida");
     rows.value = resposta.data;
-    console.log(resposta.data);
   } catch (error) {
+    $q.notify({
+      color: "negative",
+      icon: "report_problem",
+      position: "top",
+      timeout: 1000,
+      message: "Erro ao carregar dados",
+    });
     console.log(error);
   }
 }
 
-async function deleteRun(id) {
+async function removeRun(id) {
+  console.log("corrida id", id);
   $q.dialog({
-    title: "Excluir corrida?",
+    title: "Excluir Corrida",
     message: "Tem certeza que deseja excluir essa corrida?",
     cancel: true,
     persistent: true,
@@ -108,7 +116,7 @@ async function deleteRun(id) {
   }).onOk(async () => {
     try {
       const { status } = await api.delete(`corrida/${id}`);
-      if (status == 204) {
+      if (status == 200) {
         $q.notify({
           color: "positive",
           icon: "check",

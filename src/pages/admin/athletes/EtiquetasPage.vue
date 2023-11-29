@@ -22,11 +22,7 @@
             <div class="q-mb-md text-p">Etiqueta n°{{ etiqueta_numero }}</div>
           </div>
 
-          <img
-            :src="`public/favicon.ico`"
-            alt="Atleta Foto"
-            class="atleta_imagem"
-          />
+          <img :src="`/favicon.ico`" alt="Atleta Foto" class="atleta_imagem" />
         </q-card-section>
       </q-card>
     </q-col>

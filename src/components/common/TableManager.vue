@@ -85,10 +85,6 @@ const props = defineProps({
     required: false,
     default: "/",
   },
-  remove: {
-    type: Function,
-    required: false,
-  },
   isAthlete: {
     type: Boolean,
     required: false,
@@ -98,6 +94,11 @@ const props = defineProps({
 
 function updated(id) {
   router.push(`${props.routeUpdate}/${id}`);
+}
+
+const emit = defineEmits(["removeItem"]);
+function remove(id) {
+  emit("removeItem", id);
 }
 </script>
 

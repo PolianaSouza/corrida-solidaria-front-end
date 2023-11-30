@@ -8,7 +8,9 @@
           :columns="columns"
           :rows="rows"
           routeBtnNew="/admin/atletas/novo-atleta"
+          routeUpdate="/admin/atletas/editar-atleta"
           :isAthlete="isAthlete"
+          @removeItem="deleteAthlete"
         />
       </q-card>
     </div>
@@ -23,6 +25,7 @@ import { ref, onMounted } from "vue";
 onMounted(() => {
   getAthletes();
 });
+
 const isAthlete = ref(true);
 const columns = ref([
   {
@@ -67,38 +70,27 @@ const columns = ref([
   },
 ]);
 
-// const rows = ref([]);
-
+const rows = ref([]);
 async function getAthletes() {
   try {
     const resposta = await api.get("/atleta");
     rows.value = resposta.data;
-    console.log(resposta.data);
   } catch (error) {
     console.log(error);
   }
 }
 
-const rows = ref([
-  {
-    nome: "Louise Ana Valentina Mendes",
-    idade: "55",
-    sexo: "F",
-    telefone: "7777777777",
-  },
-  {
-    nome: "Pedro Mendes",
-    idade: "21",
-    sexo: "M",
-    telefone: "7377123456",
-  },
-  {
-    nome: "Joao Silva",
-    idade: "34",
-    sexo: "M",
-    telefone: "71991345678",
-  },
-]);
+async function deleteAthlete(data) {
+  try {
+    console.log(data);
+    const resposta = await api.delete("/atleta/" + data);
+    rows.value = resposta.data;
+    getAthletes();
+    console.log(resposta.data);
+  } catch (error) {
+    console.log(error);
+  }
+}
 </script>
 
 <style scoped>

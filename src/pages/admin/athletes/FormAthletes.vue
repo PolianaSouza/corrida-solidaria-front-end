@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <div>
-      <FormAthleteComponent @submitDataAthlete="createAthlete" />
+      <FormAthleteComponent @submitDataAthlete="onSubmitAthleteData" :idAthlete="id" />
     </div>
   </q-page>
 </template>
@@ -33,7 +33,7 @@ async function createAthlete(data) {
   });
 
   try {
-    const resposta = await api.post("/atleta", dados);
+    const resposta = await api.post("/atleta/corrida/" + dados.corridaId, dados);
     if (resposta.status == 201) {
       $q.notify({
         color: "positive",
@@ -112,7 +112,6 @@ async function onSubmitAthleteData(data) {
   if (id) {
     await updateAthlete(data);
   } else {
-    console.log("aqui", data);
     await createAthlete(data);
   }
 }

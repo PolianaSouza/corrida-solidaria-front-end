@@ -83,6 +83,22 @@
         />
       </div>
 
+      <div class="col-xs-11 col-sm-6 col-md-6 col-lg-3">
+        <q-select
+          filled
+          label="Corrida"
+          v-model="formAthlete.corridaId"
+          :options="corridas"
+          option-label="nome"
+          option-value="id"
+          emit-value
+          map-options
+          lazy-rules
+          :rules="[(val) => !!val || 'Informe a corrida que deseja participar']"
+          behavior="menu"
+        />
+      </div>
+
       <div class="col-12" style="margin-top: 80px">
         <q-btn :label="labelButton" type="submit" color="primary" unelevated />
         <q-btn
@@ -101,27 +117,33 @@
 import { onMounted, ref } from "vue";
 import { api } from "src/boot/axios";
 
-onMounted(() => {});
+onMounted(() => {
+  getRuns();
+  getAthlete();
+});
 
 const props = defineProps({
-  idUser: {
+  idAthlete: {
     type: String,
     default: "",
   },
 });
 
-const labelButton = (props.idUser ? "Atualizar" : "Cadastrar") + " atleta";
+const labelButton = (props.idAthlete ? "Atualizar" : "Cadastrar") + " atleta";
 const formAthlete = ref({
   nome: "",
   email: "",
   data_nascimento: null,
   sexo: null,
   telefone: null,
+  etiqueta: Math.floor(Math.random() * 1000) + 1,
+  corridaId: ""
 });
+
 
 const validateDate = [
   (val) =>
-    (val && val.length !== null) || "Informe a data de nascimento do atleta",
+    (val !== null) || "Informe a data de nascimento do atleta",
   (val) => {
     const runDate = new Date(val);
     if (runDate > new Date()) {
@@ -131,10 +153,22 @@ const validateDate = [
   },
 ];
 
-const optionsSexo = ref([
-  { label: "Masculino", value: "M" },
-  { label: "Feminino", value: "F" },
-]);
+let corridas = [];
+async function getRuns() {
+  try {
+    const resposta = await api.get("/corrida");
+    corridas = resposta.data;
+  } catch (error) {
+    $q.notify({
+      color: "negative",
+      icon: "report_problem",
+      position: "top",
+      timeout: 1000,
+      message: "Erro ao carregar dados",
+    });
+    console.log(error);
+  }
+}
 
 const validateTelefone = [
   (val) =>
@@ -152,9 +186,23 @@ const validateTelefone = [
   },
 ];
 
+const optionsSexo = ref([
+  { label: "Masculino", value: "M" },
+  { label: "Feminino", value: "F" },
+]);
+
 const emit = defineEmits(["submitDataAthlete"]);
 function submitForm() {
   emit("submitDataAthlete", formAthlete.value);
+}
+
+async function getAthlete() {
+  try {
+    const { data } = await api.get(`/atleta/${props.idAthlete}`);
+    formAthlete.value = data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 </script>
 
